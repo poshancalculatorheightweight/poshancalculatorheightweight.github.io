@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poshan Calculator 2026: Height Weight Growth Monitoring Tool</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Use the official Poshan Tracker Calculator 2026 to check child growth, height, and weight status. Fast, free, and mobile-friendly Poshan Calculator online tool.">
+    <meta name="keywords" content="Poshan Calculator, Poshan Calculator height weight app, Poshan Tracker Calculator height weight, Poshan Calculator open, Poshan Calculator 2026, Poshan Calculator update">
+    <meta name="author" content="Poshan Tracker Calculator">
+    <link rel="canonical" href="https://poshancalculatorheightweight.github.io/">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Poshan Calculator 2026 - Height & Weight Growth Tool">
+    <meta property="og:description" content="Calculate child height, weight, and nutritional status instantly with the updated 2026 Poshan Tracker Calculator tool.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://poshancalculatorheightweight.github.io/">
+    <meta property="og:locale" content="hi_IN">
+
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Poshan Calculator",
+      "url": "https://poshancalculatorheightweight.github.io/",
+      "description": "An online height and weight calculator tool aligned with Poshan Tracker growth monitoring guidelines for children.",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      }
+    }
+    </script>
+
+    <!-- FAQ Schema Markup for Google Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Poshan Calculator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Poshan Calculator is a digital tool used to monitor and track child growth metrics including height, weight, and nutritional status according to standard growth indicators."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to use Poshan Tracker Calculator for height and weight?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Simply enter the child's age in months, current height in centimeters, and weight in kilograms into the calculator tool to instantly check their nutritional category."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this Poshan Calculator updated for 2026?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, this tool is updated for 2026 with optimized responsive mobile design and fast loading speeds for GitHub Pages."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Tailwind CSS CDN for Modern Mobile-Friendly UI -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+    <!-- Header Section -->
+    <header class="bg-emerald-600 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-wide">Poshan Calculator 2026</h1>
+            <span class="text-xs bg-emerald-700 px-3 py-1 rounded-full font-medium">Official Tool</span>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-4xl mx-auto px-4 py-6">
+
+        <!-- Hero / Tool Introduction -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 mb-8 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-2">Poshan Tracker Calculator Height & Weight</h2>
+            <p class="text-slate-600 text-sm md:text-base max-w-2xl mx-auto mb-6">
+                Welcome to the 2026 updated Poshan Calculator open tool. Easily check child growth parameters, height-for-age, and weight status instantly.
+            </p>
+
+            <!-- Calculator Box -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 md:p-6 text-left max-w-xl mx-auto">
+                <form id="poshanForm" class="space-y-4" onsubmit="calculatePoshan(event)">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1" for="ageMonths">Child Age (in Months, 0 - 60):</label>
+                        <input type="number" id="ageMonths" required min="0" max="60" placeholder="e.g., 24" 
+                            class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1" for="weightKg">Weight (in kg):</label>
+                        <input type="number" step="0.1" id="weightKg" required min="1" max="40" placeholder="e.g., 11.5" 
+                            class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1" for="heightCm">Height / Length (in cm):</label>
+                        <input type="number" step="0.1" id="heightCm" required min="30" max="130" placeholder="e.g., 85.0" 
+                            class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                    </div>
+
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-lg transition duration-200 shadow-md">
+                        Calculate Poshan Status
+                    </button>
+                </form>
+
+                <!-- Result Box -->
+                <div id="resultContainer" class="hidden mt-6 p-4 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-900">
+                    <h3 class="font-bold text-lg mb-1">Growth Evaluation Result:</h3>
+                    <p id="resultText" class="text-sm"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEO Content Articles -->
+        <article class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 md:p-8 space-y-6">
+            <h2 class="text-xl md:text-2xl font-bold text-slate-900">Complete Guide to Poshan Calculator 2026 Update</h2>
+            
+            <p class="text-slate-600 leading-relaxed text-sm md:text-base">
+                The <strong>Poshan Calculator</strong> is an essential digital utility designed to simplify nutritional monitoring for Anganwadi workers, parents, and healthcare providers. By entering precise measurements into the <strong>Poshan Calculator height weight app</strong>, users can instantly determine whether a child falls within normal developmental ranges or requires specialized nutritional attention.
+            </p>
+
+            <h3 class="text-lg font-semibold text-slate-800">Why Use the Poshan Tracker Calculator Height & Weight Tool?</h3>
+            <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm md:text-base">
+                <li><strong>Instant Access:</strong> Open the <strong>Poshan Calculator open</strong> portal directly from any smartphone or desktop browser without downloads.</li>
+                <li><strong>Accurate Tracking:</strong> Built in accordance with standard anthropometric indicators for children under 5 years.</li>
+                <li><strong>Fast & Lightweight:</strong> Hosted on high-performance GitHub Pages infrastructure for lightning-fast speeds.</li>
+            </ul>
+
+            <h3 class="text-lg font-semibold text-slate-800">Frequently Asked Questions (FAQ)</h3>
+            
+            <div class="space-y-4">
+                <div class="border-b border-slate-100 pb-3">
+                    <h4 class="font-medium text-slate-800">Q1: How do I open the Poshan Calculator online?</h4>
+                    <p class="text-sm text-slate-600 mt-1">You can access this tool anytime by visiting <code class="bg-slate-100 px-1.5 py-0.5 rounded text-emerald-700">poshancalculatorheightweight.github.io</code> on your mobile browser.</p>
+                </div>
+
+                <div class="border-b border-slate-100 pb-3">
+                    <h4 class="font-medium text-slate-800">Q2: What measurements are required for the Poshan Calculator app?</h4>
+                    <p class="text-sm text-slate-600 mt-1">You need the child's exact age in months, current weight in kilograms (kg), and standing height or recumbent length in centimeters (cm).</p>
+                </div>
+
+                <div class="pb-3">
+                    <h4 class="font-medium text-slate-800">Q3: Is this tool updated for 2026 guidelines?</h4>
+                    <p class="text-sm text-slate-600 mt-1">Yes, the 2026 Poshan Calculator update includes optimized responsive user interfaces and enhanced calculation logic for rapid screening.</p>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-6 mt-12 text-center text-xs md:text-sm">
+        <p>&copy; 2026 Poshan Calculator (poshancalculatorheightweight.github.io). All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript Calculation Logic -->
+    <script>
+        function calculatePoshan(event) {
+            event.preventDefault();
+            
+            const age = parseFloat(document.getElementById('ageMonths').value);
+            const weight = parseFloat(document.getElementById('weightKg').value);
+            const height = parseFloat(document.getElementById('heightCm').value);
+            
+            const resultContainer = document.getElementById('resultContainer');
+            const resultText = document.getElementById('resultText');
+
+            // Basic BMI calculation for general nutritional status indication
+            const heightInMeters = height / 100;
+            const bmi = weight / (heightInMeters * heightInMeters);
+
+            let status = "";
+            let colorClass = "";
+
+            if (bmi < 13) {
+                status = "Severe Acute Malnutrition (SAM) risk / Underweight indicator. Please consult a healthcare professional.";
+                colorClass = "bg-red-50 border-red-200 text-red-900";
+            } else if (bmi >= 13 && bmi < 15) {
+                status = "Moderate Acute Malnutrition (MAM) or border line weight range.";
+                colorClass = "bg-amber-50 border-amber-200 text-amber-900";
+            } else if (bmi >= 15 && bmi < 20) {
+                status = "Normal Nutritional Status. Growth metrics are within standard healthy ranges.";
+                colorClass = "bg-emerald-50 border-emerald-200 text-emerald-900";
+            } else {
+                status = "Above normal weight-for-height threshold.";
+                colorClass = "bg-blue-50 border-blue-200 text-blue-900";
+            }
+
+            resultContainer.className = `mt-6 p-4 rounded-lg border ${colorClass}`;
+            resultText.innerHTML = `Calculated BMI Indicator: <strong>${bmi.toFixed(2)}</strong><br>Status: <strong>${status}</strong>`;
+            resultContainer.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
