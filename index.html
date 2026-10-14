@@ -1,1 +1,435 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poshan Calculator 2026: Height Weight Growth Monitoring Tool & Diet Chart</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Poshan Tracker Height Weight Calculator 2026. Calculate child growth, SAM/MAM malnutrition status, and get customized Hindi/English diet charts.">
+    <meta name="keywords" content="Poshan Calculator, Poshan Calculator height weight app, Poshan Tracker Calculator height weight, Poshan Calculator open, Poshan Calculator 2026, Poshan Calculator update, kuposhan diet chart, sam mam child diet plan">
+    <meta name="author" content="Poshan Calculator Team">
+    <link rel="canonical" href="https://poshancalculatorheightweight.github.io/">
 
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Poshan Calculator 2026 - Child Height & Weight Growth Tool">
+    <meta property="og:description" content="Calculate child growth status and access age-appropriate nutrition and diet charts for healthy, MAM, and SAM children.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://poshancalculatorheightweight.github.io/">
+    <meta property="og:locale" content="hi_IN">
+
+    <!-- Schema.org JSON-LD WebApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Poshan Calculator",
+      "url": "https://poshancalculatorheightweight.github.io/",
+      "description": "Online child growth tracker and malnutrition diet chart calculator based on WHO growth indicators.",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      }
+    }
+    </script>
+
+    <!-- FAQ Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Poshan Calculator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Poshan Calculator is a web-based growth monitoring tool that calculates child height, weight, and nutritional status to identify SAM, MAM, or Normal health categories."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the diet for a SAM (Severely Malnourished) child?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Severely acute malnourished children require energy-dense therapeutic foods, continuous breastfeeding, micronutrient syrup, and immediate consultation at an NRC (Nutrition Rehabilitation Center)."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Tailwind CSS CDN & Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="text-2xl">👶</span>
+                <div>
+                    <h1 class="text-lg md:text-xl font-extrabold tracking-wide leading-tight">Poshan Calculator</h1>
+                    <p class="text-xs text-emerald-100 hidden sm:block">Height & Weight Growth Monitoring Tool 2026</p>
+                </div>
+            </div>
+
+            <!-- Language Switcher Toggle -->
+            <button onclick="toggleLanguage()" id="langBtn" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-md px-3 py-1.5 rounded-full text-xs md:text-sm font-semibold transition flex items-center space-x-1 shadow-sm">
+                <span>🌐</span>
+                <span id="langBtnText">English</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-4 py-8 w-full space-y-8">
+
+        <!-- Calculator Card -->
+        <section class="bg-white rounded-3xl shadow-xl border border-slate-200/80 overflow-hidden">
+            <div class="bg-gradient-to-r from-emerald-500 to-teal-600 p-6 text-white text-center">
+                <h2 id="calcTitle" class="text-2xl md:text-3xl font-extrabold mb-2">पोषण कैलकुलेटर (Poshan Tracker Tool)</h2>
+                <p id="calcSub" class="text-emerald-100 text-sm md:text-base max-w-xl mx-auto">
+                    बच्चे की उम्र, वजन और लंबाई दर्ज करके पोषण स्थिति और आहार तालिका प्राप्त करें।
+                </p>
+            </div>
+
+            <div class="p-6 md:p-8 max-w-2xl mx-auto">
+                <form id="poshanForm" class="space-y-5" onsubmit="calculatePoshan(event)">
+                    <div>
+                        <label id="lblAge" class="block text-sm font-bold text-slate-700 mb-1.5" for="ageMonths">
+                            बच्चे की उम्र (महीने में, 0-60 महीने):
+                        </label>
+                        <input type="number" id="ageMonths" required min="0" max="60" placeholder="उदा: 24" 
+                            class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition text-base">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label id="lblWeight" class="block text-sm font-bold text-slate-700 mb-1.5" for="weightKg">
+                                वजन (Weight in Kg):
+                            </label>
+                            <input type="number" step="0.1" id="weightKg" required min="1" max="40" placeholder="उदा: 11.5" 
+                                class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition text-base">
+                        </div>
+
+                        <div>
+                            <label id="lblHeight" class="block text-sm font-bold text-slate-700 mb-1.5" for="heightCm">
+                                लंबाई / ऊंचाई (Height in Cm):
+                            </label>
+                            <input type="number" step="0.1" id="heightCm" required min="30" max="130" placeholder="उदा: 85" 
+                                class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition text-base">
+                        </div>
+                    </div>
+
+                    <button type="submit" id="btnCalculate" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold py-3.5 rounded-xl transition duration-200 shadow-lg text-base">
+                        पोषण स्थिति की जाँच करें (Calculate Status)
+                    </button>
+                </form>
+
+                <!-- Result Box -->
+                <div id="resultContainer" class="hidden mt-8 p-6 rounded-2xl border-2 transition-all">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <span id="resultIcon" class="text-3xl">📊</span>
+                        <div>
+                            <p id="resultTag" class="text-xs uppercase font-extrabold tracking-wider text-slate-500">परिणाम / Result</p>
+                            <h3 id="resultStatus" class="text-xl font-extrabold"></h3>
+                        </div>
+                    </div>
+                    <p id="resultBmi" class="text-sm font-medium mb-4 text-slate-700"></p>
+
+                    <!-- Dynamic Diet Plan Box -->
+                    <div class="bg-white/90 backdrop-blur rounded-xl p-4 border border-slate-200 shadow-sm mt-4">
+                        <h4 id="dietHeader" class="font-bold text-slate-800 text-sm md:text-base mb-2 flex items-center gap-2">
+                            <span>🥗</span> अनुशंसित आहार तालिका (Recommended Diet Chart)
+                        </h4>
+                        <ul id="dietList" class="list-disc list-inside text-sm text-slate-600 space-y-1.5"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Static Nutritional Guidance Section (Diet Charts for All) -->
+        <section class="bg-white rounded-3xl shadow-sm border border-slate-200/80 p-6 md:p-8 space-y-6">
+            <h2 id="secDietTitle" class="text-xl md:text-2xl font-extrabold text-slate-900 border-b pb-3">
+                📋 बाल पोषण आहार तालिका (Child Malnutrition & Health Diet Charts)
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Healthy Child Diet -->
+                <div class="bg-emerald-50/60 border border-emerald-200 rounded-2xl p-5 space-y-3">
+                    <div class="flex items-center gap-2 text-emerald-800 font-bold text-lg">
+                        <span>🟢</span> <h3 id="cardHealthyTitle">सामान्य / स्वस्थ बच्चा</h3>
+                    </div>
+                    <ul id="cardHealthyList" class="text-xs md:text-sm text-slate-700 space-y-2 list-disc list-inside">
+                        <li>संतुलित घरेलू भोजन (दाल, चावल, रोटी, हरी सब्जियां)।</li>
+                        <li>प्रतिदिन दूध, दही और ताजे फल।</li>
+                        <li>समय पर टीकाकरण एवं विटामिन-A की खुराक।</li>
+                    </ul>
+                </div>
+
+                <!-- MAM Child Diet -->
+                <div class="bg-amber-50/60 border border-amber-200 rounded-2xl p-5 space-y-3">
+                    <div class="flex items-center gap-2 text-amber-800 font-bold text-lg">
+                        <span>🟡</span> <h3 id="cardMamTitle">मध्यम कुपोषित (MAM)</h3>
+                    </div>
+                    <ul id="cardMamList" class="text-xs md:text-sm text-slate-700 space-y-2 list-disc list-inside">
+                        <li>ऊर्जा युक्त पोषण आहार जैसे मूंगफली/गुड़ की चक्की, दलिया।</li>
+                        <li>आंगनवाड़ी से मिलने वाला टेक होम राशन (THR)।</li>
+                        <li>भोजन में थोड़ा घी या तेल मिलाकर ऊर्जा का घनत्व बढ़ाएं।</li>
+                    </ul>
+                </div>
+
+                <!-- SAM Child Diet -->
+                <div class="bg-red-50/60 border border-red-200 rounded-2xl p-5 space-y-3">
+                    <div class="flex items-center gap-2 text-red-800 font-bold text-lg">
+                        <span>🔴</span> <h3 id="cardSamTitle">गंभीर कुपोषित (SAM)</h3>
+                    </div>
+                    <ul id="cardSamList" class="text-xs md:text-sm text-slate-700 space-y-2 list-disc list-inside">
+                        <li>तुरंत नजदीकी पोषण पुनर्वास केंद्र (NRC) में दिखाएं।</li>
+                        <li>मेडिकल सलाह अनुसार F-75 / F-100 विशेष दूध और EDTF लें।</li>
+                        <li>संक्रमण से बचाव हेतु स्वच्छ पानी एवं सफाई का विशेष ध्यान दें।</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEO Article Section -->
+        <article class="bg-white rounded-3xl shadow-sm border border-slate-200/80 p-6 md:p-8 space-y-6 text-slate-700">
+            <h2 id="artTitle" class="text-xl md:text-2xl font-bold text-slate-900">
+                Poshan Calculator 2026: Height Weight Growth Tracker Guide
+            </h2>
+            
+            <p id="artP1" class="leading-relaxed text-sm md:text-base">
+                The <strong>Poshan Calculator</strong> is a specialized online tool built to evaluate child growth standards using height, weight, and age data. Designed for parents, Anganwadi workers, and healthcare supervisors, this <strong>Poshan Calculator height weight app</strong> simplifies monitoring child health according to updated WHO growth indicators.
+            </p>
+
+            <h3 id="artH2" class="text-lg font-bold text-slate-800">
+                Key Features of Poshan Tracker Calculator
+            </h3>
+            <ul id="artList1" class="list-disc list-inside space-y-2 text-sm md:text-base">
+                <li><strong>Instant Malnutrition Screening:</strong> Categorizes growth metrics into Normal, Moderate Acute Malnutrition (MAM), and Severe Acute Malnutrition (SAM).</li>
+                <li><strong>Custom Diet Recommendations:</strong> Provides tailored diet charts to combat child stunting and underweight conditions.</li>
+                <li><strong>Mobile Friendly:</strong> Fast single-page architecture optimized for low-bandwidth mobile devices.</li>
+            </ul>
+
+            <h3 id="artH3" class="text-lg font-bold text-slate-800">
+                Frequently Asked Questions (FAQ)
+            </h3>
+            <div class="space-y-4 text-sm md:text-base">
+                <div class="border-b border-slate-200 pb-3">
+                    <h4 id="faqQ1" class="font-bold text-slate-800">Q1: How does the Poshan Height Weight Calculator work?</h4>
+                    <p id="faqA1" class="text-slate-600 mt-1">It compares the child's height and weight against age-standard growth standard ratios to compute Body Mass Index (BMI) and developmental classification.</p>
+                </div>
+                <div class="pb-3">
+                    <h4 id="faqQ2" class="font-bold text-slate-800">Q2: Where can I open the Poshan Calculator update tool?</h4>
+                    <p id="faqA2" class="text-slate-600 mt-1">You can open it instantly on any mobile or desktop browser via <code>poshancalculatorheightweight.github.io</code>.</p>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center text-xs md:text-sm border-t border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 space-y-3">
+            <p id="ftText">&copy; 2026 Poshan Calculator Tool (poshancalculatorheightweight.github.io). All rights reserved.</p>
+            <p class="text-slate-500 text-xs">Designed for fast loading on GitHub Pages. Not an official government app; intended for informational awareness.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Dual-Language & Calculation Logic -->
+    <script>
+        let currentLang = 'hi';
+
+        const i18n = {
+            hi: {
+                langBtn: "English",
+                calcTitle: "पोषण कैलकुलेटर (Poshan Tracker Tool)",
+                calcSub: "बच्चे की उम्र, वजन और लंबाई दर्ज करके पोषण स्थिति और आहार तालिका प्राप्त करें।",
+                lblAge: "बच्चे की उम्र (महीने में, 0-60 महीने):",
+                lblWeight: "वजन (Weight in Kg):",
+                lblHeight: "लंबाई / ऊंचाई (Height in Cm):",
+                btnCalculate: "पोषण स्थिति की जाँच करें (Calculate Status)",
+                resultTag: "परिणाम / Result",
+                dietHeader: "🥗 अनुशंसित आहार तालिका (Recommended Diet Chart)",
+                secDietTitle: "📋 बाल पोषण आहार तालिका (Child Malnutrition & Health Diet Charts)",
+                cardHealthyTitle: "सामान्य / स्वस्थ बच्चा",
+                cardHealthyList: [
+                    "संतुलित घरेलू भोजन (दाल, चावल, रोटी, हरी सब्जियां)।",
+                    "प्रतिदिन दूध, दही और ताजे फल।",
+                    "समय पर टीकाकरण एवं विटामिन-A की खुराक।"
+                ],
+                cardMamTitle: "मध्यम कुपोषित (MAM)",
+                cardMamList: [
+                    "ऊर्जा युक्त पोषण आहार जैसे मूंगफली/गुड़ की चक्की, दलिया।",
+                    "आंगनवाड़ी से मिलने वाला टेक होम राशन (THR)।",
+                    "भोजन में थोड़ा घी या तेल मिलाकर ऊर्जा का घनत्व बढ़ाएं।"
+                ],
+                cardSamTitle: "गंभीर कुपोषित (SAM)",
+                cardSamList: [
+                    "तुरंत नजदीकी पोषण पुनर्वास केंद्र (NRC) में दिखाएं।",
+                    "मेडिकल सलाह अनुसार F-75 / F-100 विशेष दूध और EDTF लें।",
+                    "संक्रमण से बचाव हेतु स्वच्छ पानी एवं सफाई का विशेष ध्यान दें।"
+                ],
+                artTitle: "Poshan Calculator 2026: Height Weight Growth Tracker Guide",
+                artP1: "<strong>पोषण कैलकुलेटर</strong> एक ऑनलाइन टूल है जो बच्चों की लंबाई, वजन और उम्र के आधार पर उनके पोषण स्तर की जांच करता है। यह टूल माता-पिता, आंगनवाड़ी कार्यकर्ताओं और स्वास्थ्य कार्यकर्ताओं के लिए बेहद उपयोगी है।",
+                artH2: "पोषण कैलकुलेटर की मुख्य विशेषताएं",
+                artList1: [
+                    "<strong>त्वरित कुपोषण जांच:</strong> सामान्य, मध्यम कुपोषित (MAM) और गंभीर कुपोषित (SAM) श्रेणियों में त्वरित वर्गीकरण।",
+                    "<strong>विशेष आहार तालिका:</strong> बच्चे के वजन और पोषण स्तर के अनुसार सही आहार का मार्गदर्शन।",
+                    "<strong>मोबाइल फ्रेंडली:</strong> किसी भी स्मार्टफोन पर तेजी से लोड होने वाला इंटरफेस।"
+                ],
+                artH3: "अक्सर पूछे जाने वाले प्रश्न (FAQ)",
+                faqQ1: "प्रश्न 1: पोषण कैलकुलेटर कैसे काम करता है?",
+                faqA1: "उत्तर: यह बच्चे की उम्र, वजन और लंबाई का अनुपात निकालकर डब्ल्यूएचओ (WHO) मानकों के अनुसार पोषण श्रेणी निर्धारित करता है।",
+                faqQ2: "प्रश्न 2: क्या यह टूल पूरी तरह से मुफ़्त है?",
+                faqA2: "उत्तर: हां, यह टूल GitHub Pages पर मुफ़्त उपलब्ध है और इसे किसी भी ब्राउज़र में खोला जा सकता है।"
+            },
+            en: {
+                langBtn: "हिंदी",
+                calcTitle: "Poshan Calculator (Growth Tracker Tool)",
+                calcSub: "Enter child's age, weight, and height to evaluate nutritional status & diet plan.",
+                lblAge: "Child Age (in Months, 0-60):",
+                lblWeight: "Weight (in Kg):",
+                lblHeight: "Height / Length (in Cm):",
+                btnCalculate: "Check Nutritional Status",
+                resultTag: "Result Analysis",
+                dietHeader: "🥗 Recommended Diet Chart",
+                secDietTitle: "📋 Child Nutrition & Growth Diet Charts",
+                cardHealthyTitle: "Normal / Healthy Child",
+                cardHealthyList: [
+                    "Balanced home-cooked meals (pulses, rice, roti, green vegetables).",
+                    "Daily intake of milk, curd, and fresh seasonal fruits.",
+                    "Timely vaccination and periodic Vitamin-A doses."
+                ],
+                cardMamTitle: "Moderate Malnutrition (MAM)",
+                cardMamList: [
+                    "Energy-dense food like peanut/jaggery chikki and porridge.",
+                    "Take Home Ration (THR) provided by Anganwadi centers.",
+                    "Add small amounts of ghee/oil to foods to increase caloric density."
+                ],
+                cardSamTitle: "Severe Malnutrition (SAM)",
+                cardSamList: [
+                    "Immediate referral to nearest Nutrition Rehabilitation Center (NRC).",
+                    "Administer medically supervised therapeutic food (EDTF/F-75/F-100).",
+                    "Ensure strict hygiene and safe drinking water to prevent infections."
+                ],
+                artTitle: "Poshan Calculator 2026: Height Weight Growth Tracker Guide",
+                artP1: "The <strong>Poshan Calculator</strong> is a specialized web utility designed to monitor child anthropometric indicators. It assists parents and Anganwadi workers in tracking healthy growth milestones.",
+                artH2: "Key Features of Poshan Tracker Calculator",
+                artList1: [
+                    "<strong>Instant Growth Screening:</strong> Quickly flags Normal, MAM, and SAM growth thresholds.",
+                    "<strong>Actionable Diet Guidance:</strong> Provides practical dietary solutions based on nutritional grade.",
+                    "<strong>Lightweight & Responsive:</strong> Designed for smooth performance across mobile devices."
+                ],
+                artH3: "Frequently Asked Questions (FAQ)",
+                faqQ1: "Q1: How does the Poshan Height Weight Calculator work?",
+                faqA1: "A: It calculates body height-to-weight proportions against standardized growth charts to assess health status.",
+                faqQ2: "Q2: Is this tool accessible on mobile devices?",
+                faqA2: "A: Yes, it is fully optimized for all mobile browsers hosted on poshancalculatorheightweight.github.io."
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'hi' ? 'en' : 'hi';
+            updateLanguageUI();
+        }
+
+        function updateLanguageUI() {
+            const l = i18n[currentLang];
+            document.getElementById('langBtnText').innerText = l.langBtn;
+            document.getElementById('calcTitle').innerText = l.calcTitle;
+            document.getElementById('calcSub').innerText = l.calcSub;
+            document.getElementById('lblAge').innerText = l.lblAge;
+            document.getElementById('lblWeight').innerText = l.lblWeight;
+            document.getElementById('lblHeight').innerText = l.lblHeight;
+            document.getElementById('btnCalculate').innerText = l.btnCalculate;
+            document.getElementById('resultTag').innerText = l.resultTag;
+            document.getElementById('dietHeader').innerHTML = `<span>🥗</span> ${l.dietHeader}`;
+            document.getElementById('secDietTitle').innerText = l.secDietTitle;
+
+            document.getElementById('cardHealthyTitle').innerText = l.cardHealthyTitle;
+            document.getElementById('cardMamTitle').innerText = l.cardMamTitle;
+            document.getElementById('cardSamTitle').innerText = l.cardSamTitle;
+
+            renderList('cardHealthyList', l.cardHealthyList);
+            renderList('cardMamList', l.cardMamList);
+            renderList('cardSamList', l.cardSamList);
+
+            document.getElementById('artTitle').innerText = l.artTitle;
+            document.getElementById('artP1').innerHTML = l.artP1;
+            document.getElementById('artH2').innerText = l.artH2;
+            renderList('artList1', l.artList1);
+            document.getElementById('artH3').innerText = l.artH3;
+            document.getElementById('faqQ1').innerText = l.faqQ1;
+            document.getElementById('faqA1').innerText = l.faqA1;
+            document.getElementById('faqQ2').innerText = l.faqQ2;
+            document.getElementById('faqA2').innerText = l.faqA2;
+        }
+
+        function renderList(id, items) {
+            const ul = document.getElementById(id);
+            ul.innerHTML = items.map(item => `<li>${item}</li>`).join('');
+        }
+
+        function calculatePoshan(event) {
+            event.preventDefault();
+            
+            const age = parseFloat(document.getElementById('ageMonths').value);
+            const weight = parseFloat(document.getElementById('weightKg').value);
+            const height = parseFloat(document.getElementById('heightCm').value);
+            
+            const resultContainer = document.getElementById('resultContainer');
+            const resultStatus = document.getElementById('resultStatus');
+            const resultBmi = document.getElementById('resultBmi');
+            const resultIcon = document.getElementById('resultIcon');
+            const dietList = document.getElementById('dietList');
+
+            const heightInMeters = height / 100;
+            const bmi = weight / (heightInMeters * heightInMeters);
+
+            let status = "";
+            let colorClass = "";
+            let icon = "";
+            let diets = [];
+
+            if (bmi < 13) {
+                status = currentLang === 'hi' ? "गंभीर कुपोषण (SAM - Severely Acute Malnourished)" : "Severe Acute Malnutrition (SAM)";
+                colorClass = "bg-red-50 border-red-300 text-red-900";
+                icon = "🔴";
+                diets = i18n[currentLang].cardSamList;
+            } else if (bmi >= 13 && bmi < 15) {
+                status = currentLang === 'hi' ? "मध्यम कुपोषण (MAM - Moderately Acute Malnourished)" : "Moderate Acute Malnutrition (MAM)";
+                colorClass = "bg-amber-50 border-amber-300 text-amber-900";
+                icon = "🟡";
+                diets = i18n[currentLang].cardMamList;
+            } else {
+                status = currentLang === 'hi' ? "सामान्य एवं स्वस्थ (Normal & Healthy)" : "Normal & Healthy Status";
+                colorClass = "bg-emerald-50 border-emerald-300 text-emerald-900";
+                icon = "🟢";
+                diets = i18n[currentLang].cardHealthyList;
+            }
+
+            resultContainer.className = `mt-8 p-6 rounded-2xl border-2 transition-all ${colorClass}`;
+            resultIcon.innerText = icon;
+            resultStatus.innerText = status;
+            resultBmi.innerHTML = `${currentLang === 'hi' ? 'गणना सूचकांक (BMI Score)' : 'BMI Score'}: <strong>${bmi.toFixed(2)}</strong>`;
+            
+            dietList.innerHTML = diets.map(d => `<li>${d}</li>`).join('');
+            resultContainer.classList.remove('hidden');
+        }
+
+        // Initialize default UI
+        updateLanguageUI();
+    </script>
+</body>
+</html>
